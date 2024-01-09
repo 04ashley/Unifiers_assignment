@@ -1,0 +1,114 @@
+<!-- accounts/templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Dashboard</h1>
+        <!-- Add navigation or user information here -->
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}! (<a href="{% url 'logout' %}">Logout</a>)</p>
+        {% else %}
+            <p>Welcome guest! Please <a href="{% url 'login' %}">log in</a>.</p>
+        {% endif %}
+    </header>
+
+    <nav>
+        <!-- Add navigation links here -->
+        <ul>
+            <li><a href="{% url 'dashboard' %}">Home</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'settings' %}">Settings</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Dashboard</h2>
+        <p>This is your personalized dashboard. Add your content here.</p>
+        <!-- Add content specific to the dashboard here -->
+        <section>
+            <h3>Recent Activities</h3>
+            <!-- Add recent activities here -->
+            <ul>
+                <li>Activity 1</li>
+                <li>Activity 2</li>
+                <li>Activity 3</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Notifications</h3>
+            <!-- Add notifications here -->
+            <ul>
+                <li>Notification 1</li>
+                <li>Notification 2</li>
+                <li>Notification 3</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2023 Your Dashboard App
+    </footer>
+</body>
+</html>
